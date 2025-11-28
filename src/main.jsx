@@ -1,10 +1,10 @@
 import { createRoot } from "react-dom/client";
-
 import App from "@/App.jsx";
-import { Provider as ReduxProvider } from "react-redux";
-import { store } from "@/store/store.js";
+import { Provider as RudeuxProvider } from "react-redux";
+import store from "./store/store";
+
 createRoot(document.getElementById("root")).render(
-  <ReduxProvider store={store}>
+  <RudeuxProvider store={store}>
     <App />
-  </ReduxProvider>
+  </RudeuxProvider>
 );

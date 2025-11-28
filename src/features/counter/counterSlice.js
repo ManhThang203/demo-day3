@@ -4,33 +4,28 @@ const initialState = {
   value: 0,
 };
 
-// CreateSlice trả về 1 slice
-// Trong Object slice có thuộc tính action
 export const counterSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
-    // tại sao state lại gọi được value ?
-    // Vì nó sẽ tự sử dụng thư viện immer
+    // Tại các action có tham số state lại có thể gọi được hàm value vì nó sử dụng thư viện immer
     increment(state) {
       state.value += 1;
     },
     decrement(state) {
       state.value -= 1;
     },
-    incrementByAmount: (state, action) => {
+    incrementByAmout(state, action) {
       state.value += action.payload;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { increment, decrement, incrementByAmout } = counterSlice.actions;
 
 export const { reducerPath } = counterSlice;
 
-// Tại sao lại export reducer
-// - bản chất thì 1 con counterSlice chính là reducer
+export const selectCounter = (state) => state.counter.value;
 
-export default counterSlice.reducer;
-
-console.log(counterSlice);
+// bản chất counterSlice là 1 reducer
+export default counterSlice;

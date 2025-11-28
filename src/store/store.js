@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import counterSlice, { reducerPath } from "@/features/counter/counterSlice";
+import counterSlice from "@/features/counter/counterSlice";
+import productSlice from "@/features/product/productSlice";
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    // lấy giá trị biến reducerPath làm key lên phải viết []
-    [reducerPath]: counterSlice,
+    [counterSlice.reducerPath]: counterSlice.reducer,
+    [productSlice.reducerPath]: productSlice.reducer,
   },
 });
+
+export default store;
