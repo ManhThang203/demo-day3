@@ -1,15 +1,15 @@
-import { HashRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router";
 import Counter from "@/page/Counter";
 import Product from "@/page/Product";
 
 function AppRouter() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
-        <Route path="/counter" element={<Counter />}></Route>
-        <Route path="/product" element={<Product />}></Route>
+        <Route path="counter" element={<Counter />}></Route>
+        <Route path="product" element={<Product />}></Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

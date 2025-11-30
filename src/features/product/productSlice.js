@@ -3,31 +3,31 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   list: [],
+  loading: false,
 };
 
-export const productSlice = createSlice({
+export const productSlide = createSlice({
   name: "product",
   initialState,
   reducers: {
-    // Tại các action có tham số state lại có thể gọi được hàm value vì nó sử dụng thư viện immer
     setList(state, action) {
-      state.value = action.payload;
+      // Đã sử dụng thư viện immer lên có thể gán thẳng giá trị vào obj mà không bị re-render
+      state.list = action.payload;
     },
   },
-  // extraReducers là 1 hàm và nhận builder
-  // addCase chờ 1 api gọi song nó lại gọi 1 hàm (reducer) thực hiện lấy action
   extraReducers: (builder) => {
     builder.addCase(getList.fulfilled, (state, action) => {
       state.list = action.payload.items;
+      state.loading = true;
     });
   },
 });
 
-export const { setList } = productSlice.actions;
+export const { setList } = productSlide.actions;
 
-export const { reducerPath } = productSlice;
+export const { reducerPath } = productSlide;
 
-export const selectList = (state) => state.product.list;
+export const selectProduct = (state) => state.product.list;
+export const selectLoading = (state) => state.product.loading;
 
-// bản chất counterSlice là 1 reducer
-export default productSlice;
+export default productSlide;

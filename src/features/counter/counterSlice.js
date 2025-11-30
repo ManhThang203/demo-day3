@@ -4,11 +4,12 @@ const initialState = {
   value: 0,
 };
 
-export const counterSlice = createSlice({
+export const counterSlide = createSlice({
   name: "counter",
   initialState,
   reducers: {
-    // Tại các action có tham số state lại có thể gọi được hàm value vì nó sử dụng thư viện immer
+    // Tại sao các case có tham số state lại có thể gọi được state
+    // Vì sử dụng thư viện immer
     increment(state) {
       state.value += 1;
     },
@@ -21,11 +22,11 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { increment, decrement, incrementByAmout } = counterSlice.actions;
+// createSlice sẽ trả về 1 obj Slide và trong obj có action
+export const { increment, decrement, incrementByAmout } = counterSlide.actions;
 
-export const { reducerPath } = counterSlice;
+export const { reducerPath } = counterSlide;
 
 export const selectCounter = (state) => state.counter.value;
 
-// bản chất counterSlice là 1 reducer
-export default counterSlice;
+export default counterSlide;
