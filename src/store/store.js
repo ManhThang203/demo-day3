@@ -1,5 +1,5 @@
 import counterSlide from "@/features/counter/counterSlice";
-import productSlide from "@/features/product/productSlice";
+import { productSlide } from "@/features/product";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({

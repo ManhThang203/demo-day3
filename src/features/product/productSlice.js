@@ -16,9 +16,15 @@ export const productSlide = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(getList.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(getList.fulfilled, (state, action) => {
       state.list = action.payload.items;
-      state.loading = true;
+      state.loading = false;
+    });
+    builder.addCase(getList.rejected, (state) => {
+      state.loading = false;
     });
   },
 });
@@ -26,8 +32,5 @@ export const productSlide = createSlice({
 export const { setList } = productSlide.actions;
 
 export const { reducerPath } = productSlide;
-
-export const selectProduct = (state) => state.product.list;
-export const selectLoading = (state) => state.product.loading;
 
 export default productSlide;

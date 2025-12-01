@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getList as getProductList } from "@/services/product/productServices";
-import { selectLoading, selectProduct } from "@/features/product/productSlice";
+import { getList as getProductList } from "@/services/product";
+import { selectLoading, selectProduct } from "@/features/product";
 
 /**
  * Custom hook để fetch danh sách sản phẩm khi component được mount.
