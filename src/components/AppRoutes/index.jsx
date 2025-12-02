@@ -1,9 +1,9 @@
 import Counter from "@/page/Counter";
-import Product from "@/page/Product";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Loading from "../Loading";
-import AssetsImg from "@/page/AssetsImg";
+import Product from "@/page/Product";
 import AssetsIcon from "@/page/AssetsIcon";
+import AssetsImg from "@/page/AssetsImg";
 
 function AppRouter() {
   return (
@@ -12,8 +12,8 @@ function AppRouter() {
       <Routes>
         <Route path="counter" element={<Counter />}></Route>
         <Route path="product" element={<Product />}></Route>
-        <Route path="assetsImg" element={<AssetsImg />}></Route>
         <Route path="assetsIcon" element={<AssetsIcon />}></Route>
+        <Route path="assetsImg" element={<AssetsImg />}></Route>
       </Routes>
     </BrowserRouter>
   );

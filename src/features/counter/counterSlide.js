@@ -14,12 +14,12 @@ export const counterSlide = createSlice({
     decrement(state) {
       state.value -= 1;
     },
-    incrementByMout(state, action) {
+    incrementByAmout(state, action) {
       state.value += action.payload;
     },
   },
 });
 
-export const { increment, decrement, incrementByMout } = counterSlide.actions;
+export const { increment, decrement, incrementByAmout } = counterSlide.actions;
 
 export const { reducerPath } = counterSlide;

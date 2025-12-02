@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { selectLoading, selectProductList } from "./select";
+import { useEffect } from "react";
 import { getList as getProductList } from "@/services/product/productServices";
-import { selectLoadingProduct, selectProductList } from "./selects";
 
 export const useFetchProductList = () => {
   const dispatch = useDispatch();
@@ -16,6 +16,6 @@ export const useProductList = () => {
 };
 
 export const useLoading = () => {
-  const loading = useSelector(selectLoadingProduct);
+  const loading = useSelector(selectLoading);
   return loading;
 };

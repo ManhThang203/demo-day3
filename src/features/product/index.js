@@ -1,3 +1,3 @@
 export * from "./productSlide";
 export * from "./hooks";
-export * from "./selects";
+export * from "./select";

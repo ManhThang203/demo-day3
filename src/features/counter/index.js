@@ -1,3 +1,3 @@
 export * from "./counterSlide";
 export * from "./hooks";
-export * from "./selects";
+export * from "./select";
