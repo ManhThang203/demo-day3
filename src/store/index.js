@@ -1,12 +1,11 @@
-import counterSlide from "@/features/counter/counterSlice";
-import { productSlide } from "@/features/product";
 import { configureStore } from "@reduxjs/toolkit";
 
-const store = configureStore({
+import { counterSlide } from "@/features/counter";
+import { productSlide } from "@/features/product";
+
+export const store = configureStore({
   reducer: {
     [counterSlide.reducerPath]: counterSlide.reducer,
     [productSlide.reducerPath]: productSlide.reducer,
   },
 });
-
-export default store;

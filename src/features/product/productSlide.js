@@ -1,4 +1,4 @@
-import { getList } from "@/services/product/productServices";
+import { getList } from "@/services/product";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -11,7 +11,6 @@ export const productSlide = createSlice({
   initialState,
   reducers: {
     setList(state, action) {
-      // Đã sử dụng thư viện immer lên có thể gán thẳng giá trị vào obj mà không bị re-render
       state.list = action.payload;
     },
   },
@@ -32,5 +31,3 @@ export const productSlide = createSlice({
 export const { setList } = productSlide.actions;
 
 export const { reducerPath } = productSlide;
-
-export default productSlide;
