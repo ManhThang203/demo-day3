@@ -30,10 +30,10 @@ const put = async (path, data, config) => {
   return await _send("put", path, data, config);
 };
 
-const dele = async (path, config) => {
+const del = async (path, config) => {
   return await _send("delete", path, null, config);
 };
 
-const http = { get, post, patch, put, dele };
+const http = { get, post, patch, put, del };
 
 export default http;

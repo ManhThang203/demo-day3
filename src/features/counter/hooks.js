@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { selectCount } from "./select";
+import { selectCounter } from "./select";
 
-export const useCounter = () => {
-  const counter = useSelector(selectCount);
-  return counter;
+export const useProduct = () => {
+  const product = useSelector(selectCounter);
+  return product;
 };

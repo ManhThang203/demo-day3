@@ -1,1 +1,1 @@
-export const selectCount = (state) => state.counter.value;
+export const selectCounter = (state) => state.counter.value;

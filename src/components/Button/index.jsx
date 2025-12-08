@@ -1,52 +1,42 @@
 import clsx from "clsx";
-import styles from "./Button.module.scss";
+import style from "./Button.module.scss";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 function Button({
   primary = false,
   outline = false,
   children,
-  href,
   size = "medium",
+  passProp,
   className,
+  href,
   icon,
-  loading,
   leftIcon = icon,
   rightIcon,
+  loading,
   disabled,
-  onClick,
-  ...passProp
 }) {
-  const classNames = clsx(styles.btn, styles[size], className, {
-    [styles.primary]: primary,
-    [styles.outline]: outline,
-    [styles.disabled]: disabled,
-  });
   const Component = href ? "a" : "button";
-  const shouldDisabled = disabled || loading;
-  const handelClick = (e) => {
-    if (shouldDisabled) {
-      e.preventDefault();
-      e.stopPropagation();
-      return;
-    }
-    onClick(e);
-  };
+  const classNames = clsx(style.btn, style[size], className, {
+    [style.primary]: primary,
+    [style.outline]: outline,
+    [style.disabled]: disabled,
+  });
+  const shouldDisabled = loading || disabled;
   return (
-    <Component {...passProp} className={classNames} onClick={handelClick}>
+    <Component {...passProp} className={classNames}>
       <div
-        className={clsx(styles.inner, {
-          [styles.hidden]: loading,
+        className={clsx(style.inner, {
+          [style.hidden]: shouldDisabled,
         })}
       >
         {leftIcon && <FontAwesomeIcon icon={leftIcon}></FontAwesomeIcon>}
         {children}
         {rightIcon && <FontAwesomeIcon icon={rightIcon}></FontAwesomeIcon>}
       </div>
-      {disabled && (
+      {shouldDisabled && (
         <FontAwesomeIcon
-          className={styles.icon}
+          className={style.icon}
           icon={icon}
           spin
         ></FontAwesomeIcon>
@@ -54,18 +44,18 @@ function Button({
     </Component>
   );
 }
+
 Button.prototype = {
+  children: PropTypes.node,
   primary: PropTypes.bool,
   outline: PropTypes.bool,
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
-  children: PropTypes.node,
-  href: PropTypes.string,
   size: PropTypes.string,
-  className: PropTypes.string,
   passProp: PropTypes.string,
+  className: PropTypes.string,
+  href: PropTypes.string,
   icon: PropTypes.func,
-  leftIcon: PropTypes.func,
   rightIcon: PropTypes.func,
 };
 

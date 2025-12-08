@@ -1,11 +1,11 @@
-import icons from "@/assets/icons";
+import images from "@/assets/images";
 
 function AssetsImg() {
   return (
     <>
-      <img src={icons.icon400} alt="" />
-      <img src={icons.icon400} alt="" />
-      <img src={icons.icon400} alt="" />
+      <img src={images.avatar400} />
+      <img src={images.avatar400} />
+      <img src={images.avatar400} />
     </>
   );
 }

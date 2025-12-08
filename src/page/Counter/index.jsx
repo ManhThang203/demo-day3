@@ -3,11 +3,11 @@ import {
   decrement,
   increment,
   incrementByAmout,
-  useCounter,
+  useProduct,
 } from "@/features/counter";
 
 export function Counter() {
-  const count = useCounter();
+  const count = useProduct();
   const dispatch = useDispatch();
 
   return (
@@ -36,5 +36,4 @@ export function Counter() {
     </div>
   );
 }
-
 export default Counter;

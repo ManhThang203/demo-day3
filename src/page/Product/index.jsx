@@ -1,17 +1,19 @@
-import { useFetchProductList, useProductList } from "@/features/product";
+import { useFetchProductList, useProudtList } from "@/features/product";
+import { Link } from "react-router";
 
 function Product() {
   useFetchProductList();
-  const product = useProductList();
+  const product = useProudtList();
   return (
-    <div>
+    <>
       <h1>Product List</h1>
+      <Link to="/address/provinces">List 1</Link>
       <ul>
         {product.map((p) => (
           <li key={p.id}>{p.title}</li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }
 export default Product;

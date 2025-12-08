@@ -1,4 +1,4 @@
-import { getList } from "@/services/product/productServices";
+import { getList } from "@/services/product";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {

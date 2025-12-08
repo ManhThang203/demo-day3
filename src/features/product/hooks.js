@@ -1,17 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import { selectLoading, selectProductList } from "./select";
 import { useEffect } from "react";
-import { getList as getProductList } from "@/services/product/productServices";
+import { useDispatch, useSelector } from "react-redux";
+import { getList as getProductList } from "@/services/product";
+import { selectLoading, selectProduct } from "./select";
 
 export const useFetchProductList = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getProductList());
   }, [dispatch]);
 };
 
-export const useProductList = () => {
-  const product = useSelector(selectProductList);
+export const useProudtList = () => {
+  const product = useSelector(selectProduct);
   return product;
 };
 
