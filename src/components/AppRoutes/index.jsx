@@ -6,11 +6,15 @@ import AssetsImg from "@/page/AssetsImg";
 import AssetsIcon from "@/page/AssetsIcon";
 import AddressProvince from "@/page/AddressProvince";
 import AddressProvince2 from "@/page/AddressProvince2";
+import Header from "../Header";
+import AuthProvider from "@/components/authProvider/indnex";
 
 function AppRouter() {
   return (
     <BrowserRouter>
       <Loading />
+      <AuthProvider />
+      <Header />
       <Routes>
         <Route path="counter" element={<Counter />}></Route>
         <Route path="product" element={<Product />}></Route>

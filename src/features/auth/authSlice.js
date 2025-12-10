@@ -1,20 +1,25 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import baseQuery from "@/utils/baseQuery";
-export const addressApi = createApi({
-  reducerPath: "addressApi",
-  baseQuery,
-  endpoints: (builder) => ({
-    getProvinces: builder.query({
-      query: () => "/address/provinces",
-      keepUnusedDataFor: 5,
-      transformResponse: (response) => response.data,
-    }),
-  }),
-  refetchOnFocus: true,
-  refetchOnReconnect: true,
+import { getCurrentUser } from "@/services/product/currentUserServices";
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  currentUser: null,
+};
+
+export const authSlide = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getCurrentUser.fulfilled, (state, action) => {
+      state.currentUser = action.payload;
+    });
+    builder.addCase(getCurrentUser.rejected, (state) => {
+      state.currentUser = null;
+    });
+  },
 });
 
-export const { useGetProvincesQuery } = addressApi;
+export const { reducerPath } = authSlide;
 
 /**
  * +++ Chú ý +++
