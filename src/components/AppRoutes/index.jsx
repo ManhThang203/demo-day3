@@ -10,6 +10,8 @@ import Header from "@/components/Header";
 import AuthProvider from "@/components/AuthProvider";
 import Register from "@/page/auth/Register";
 import Login from "@/page/auth/Login";
+import Profile from "@/page/Profile";
+import PrivateRoute from "../PrivateRoute";
 
 function AppRouter() {
   return (
@@ -26,6 +28,10 @@ function AppRouter() {
         <Route path="address/provinces2" element={<AddressProvince2 />}></Route>
         <Route path="register" element={<Register />}></Route>
         <Route path="Login" element={<Login />}></Route>
+        {/* Private Router */}
+        <Route element={<PrivateRoute />}>
+          <Route path="profile" element={<Profile />}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

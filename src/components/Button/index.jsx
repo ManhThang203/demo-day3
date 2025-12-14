@@ -15,6 +15,7 @@ function Button({
   rightIcon,
   loading,
   disabled,
+  onClick,
 }) {
   const Component = href ? "a" : "button";
   const classNames = clsx(style.btn, style[size], className, {
@@ -24,7 +25,7 @@ function Button({
   });
   const shouldDisabled = loading || disabled;
   return (
-    <Component {...passProp} className={classNames}>
+    <Component {...passProp} className={classNames} onClick={onClick}>
       <div
         className={clsx(style.inner, {
           [style.hidden]: shouldDisabled,
@@ -57,6 +58,7 @@ Button.prototype = {
   href: PropTypes.string,
   icon: PropTypes.func,
   rightIcon: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 export default Button;

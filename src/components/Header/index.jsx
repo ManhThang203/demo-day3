@@ -1,15 +1,34 @@
-import { useCurrent } from "@/features/auth";
+import { setcurrentUser, useCurrent } from "@/features/auth";
 import Button from "../Button";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import * as authService from "@/services/product";
+import { useDispatch } from "react-redux";
 
 function Header() {
   const currentUser = useCurrent();
-  console.log(currentUser);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    try {
+      await authService.logout();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      localStorage.clear();
+      dispatch(setcurrentUser(null));
+      navigate("/login");
+    }
+  };
   return (
     <div>
       <h1>Header</h1>
       {currentUser ? (
-        <p>{currentUser.email}</p>
+        <>
+          <p>{currentUser.email}</p>
+          <Button onClick={handleLogout} outline>
+            Logout
+          </Button>
+        </>
       ) : (
         <>
           <Link to="login">
