@@ -1,20 +1,24 @@
-import Loading from "../Loading";
-import Button from "../Button";
 import { useCurrent } from "@/features/auth";
+import Button from "../Button";
+import { Link } from "react-router";
 
 function Header() {
-  const user = useCurrent();
-  console.log(user);
+  const currentUser = useCurrent();
+  console.log(currentUser);
   return (
     <div>
       <h1>Header</h1>
-      {user ? (
-        <p>{user.email}</p>
+      {currentUser ? (
+        <p>{currentUser.email}</p>
       ) : (
-        <div>
-          <Button outline>Sign In</Button>
-          <Button outline>Sign Up</Button>
-        </div>
+        <>
+          <Link to="login">
+            <Button outline>Sign In</Button>
+          </Link>
+          <Link to="register">
+            <Button outline>Sign Up</Button>
+          </Link>
+        </>
       )}
     </div>
   );

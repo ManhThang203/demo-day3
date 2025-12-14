@@ -10,4 +10,5 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
+
 export default baseQuery;

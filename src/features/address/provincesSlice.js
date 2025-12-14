@@ -1,20 +1,21 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
+import { transformData } from "../helper";
 import baseQuery from "@/utils/baseQuery";
-export const addressApi = createApi({
-  reducerPath: "addressApi",
+export const addresApi = createApi({
+  reducerPath: "addresApi",
   baseQuery,
   endpoints: (builder) => ({
     getProvinces: builder.query({
       query: () => "/address/provinces",
       keepUnusedDataFor: 5,
-      transformResponse: (response) => response.data,
+      transformResponse: transformData,
     }),
   }),
   refetchOnFocus: true,
   refetchOnReconnect: true,
 });
 
-export const { useGetProvincesQuery } = addressApi;
+export const { useGetProvincesQuery } = addresApi;
 
 /**
  * +++ Chú ý +++
