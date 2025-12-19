@@ -3,6 +3,8 @@ import TextInput from "@/components/TextInput";
 import { useForm } from "react-hook-form";
 import * as authServices from "@/services/product/currentServices";
 import { useNavigate } from "react-router";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registerSchema } from "@/utils/validators";
 function Register() {
   const navigate = useNavigate();
   const {
@@ -11,12 +13,13 @@ function Register() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      firstName: "Thang",
-      lastName: "Manh",
-      email: "manhthang99@gmail.com",
-      password: "123456789",
-      password_confirmation: "123456789",
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
     },
+    resolver: yupResolver(registerSchema),
   });
   const onSubmit = async (data) => {
     const { access_token } = await authServices.register(data);
@@ -63,7 +66,7 @@ function Register() {
         <TextInput
           lable="password"
           name="password"
-          type="text"
+          type="password"
           register={register}
           errors={errors.password}
           required="Vui lòng nhập trường này"
@@ -73,7 +76,7 @@ function Register() {
         <TextInput
           lable="password_confirmation"
           name="password_confirmation"
-          type="text"
+          type="password"
           register={register}
           errors={errors.password_confirmation}
           required="Vui lòng nhập trường này"
