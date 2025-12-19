@@ -1,1 +1,1 @@
-export const selectCurrentUser = (state) => state.auth.currentUser;
+export const selectAuthSlide = (state) => state.auth.currentUser;

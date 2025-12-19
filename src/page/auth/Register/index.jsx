@@ -1,7 +1,7 @@
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
 import { useForm } from "react-hook-form";
-import * as authService from "@/services/product/currentUserServices";
+import * as authServices from "@/services/product/currentServices";
 import { useNavigate } from "react-router";
 function Register() {
   const navigate = useNavigate();
@@ -13,72 +13,76 @@ function Register() {
     defaultValues: {
       firstName: "Thang",
       lastName: "Manh",
-      email: "manhthang0101@gmail.com",
+      email: "manhthang99@gmail.com",
       password: "123456789",
       password_confirmation: "123456789",
     },
   });
-
   const onSubmit = async (data) => {
-    const { access_token } = await authService.register(data);
+    const { access_token } = await authServices.register(data);
+
     if (access_token) {
-      localStorage.setItem("token", access_token);
+      localStorage.setItem("accessToken", access_token);
       navigate("/login");
     }
   };
   return (
-    <>
+    <div>
+      <h1>Register</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextInput
-          label="firstName"
+          lable="firstName"
           name="firstName"
           type="text"
           register={register}
-          placeholder="Enter firstName..."
-          required="Vui long nhập trường này"
           errors={errors.firstName}
+          required="Vui lòng nhập trường này"
+          placeholder="Enter firstName..."
         />
+        <br />
         <TextInput
-          label="lastName"
+          lable="lastName"
           name="lastName"
           type="text"
           register={register}
-          placeholder="Enter lastName..."
-          required="Vui long nhập trường này"
           errors={errors.lastName}
+          required="Vui lòng nhập trường này"
+          placeholder="Enter lastName..."
         />
+        <br />
         <TextInput
-          label="email"
+          lable="email"
           name="email"
           type="text"
           register={register}
-          placeholder="Enter email..."
-          required="Vui long nhập trường này"
           errors={errors.email}
+          required="Vui lòng nhập trường này"
+          placeholder="Enter email..."
         />
-
+        <br />
         <TextInput
-          label="password"
+          lable="password"
           name="password"
           type="text"
           register={register}
-          placeholder="Enter password..."
-          required="Vui long nhập trường này"
           errors={errors.password}
+          required="Vui lòng nhập trường này"
+          placeholder="Enter password..."
         />
+        <br />
         <TextInput
-          label="password_confirmation"
+          lable="password_confirmation"
           name="password_confirmation"
           type="text"
           register={register}
-          placeholder="Enter password_confirmation..."
-          required="Vui long nhập trường này"
           errors={errors.password_confirmation}
+          required="Vui lòng nhập trường này"
+          placeholder="Enter password_confirmation..."
         />
-
-        <Button outline>Submit</Button>
+        <br />
+        <Button outline>Register</Button>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -5,17 +5,17 @@ const initialState = {
   currentUser: null,
 };
 
-export const authSlice = createSlice({
+export const authSlide = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setcurrentUser: (state, action) => {
+    setCurrentUser: (state, action) => {
       state.currentUser = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getCurrentUser.fulfilled, (state, action) => {
-      state.currentUser = action.payload;
+    builder.addCase(getCurrentUser.fulfilled, (state, actions) => {
+      state.currentUser = actions.payload;
     });
     builder.addCase(getCurrentUser.rejected, (state) => {
       state.currentUser = null;
@@ -23,4 +23,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setcurrentUser } = authSlice.actions;
+export const { setCurrentUser } = authSlide.actions;
+
+export const { reducerPath } = authSlide;

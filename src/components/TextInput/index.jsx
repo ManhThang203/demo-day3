@@ -1,36 +1,36 @@
 import PropTypes from "prop-types";
 
 function TextInput({
-  label,
+  lable,
   name,
   type = "text",
   register,
-  placeholder,
-  required,
   errors,
+  required,
+  placeholder,
 }) {
   return (
-    <div>
-      {label && <label>{label}</label>}
+    <>
+      {lable && <lable>{lable}</lable>}
       <br />
       <input
         id={name}
         type={type}
-        placeholder={placeholder}
         {...register(name, { required })}
+        placeholder={placeholder}
       />
       {errors && <p>{errors.message}</p>}
-    </div>
+    </>
   );
 }
 
 TextInput.prototype = {
-  label: PropTypes.string,
+  required: PropTypes.func.isRequired,
+  lable: PropTypes.string,
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
-  register: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  required: PropTypes.object,
+  register: PropTypes.object,
   errors: PropTypes.object,
 };
 

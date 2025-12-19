@@ -3,9 +3,9 @@ import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 const baseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_BASE_API,
   prepareHeaders: (headers) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      headers.set("Authorization", `Bearer ${token}`);
+    const access_token = localStorage.getItem("accessToken");
+    if (access_token) {
+      headers.set("province", `Bearer ${access_token}`);
     }
     return headers;
   },

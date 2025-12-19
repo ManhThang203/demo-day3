@@ -1,7 +1,7 @@
-import { useCurrent } from "@/features/auth";
+import { useCurrentUser } from "@/features/auth";
 
 function Profile() {
-  const current = useCurrent();
+  const current = useCurrentUser();
   return <p>{JSON.stringify(current)}</p>;
 }
 

@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import { useGetProvincesQuery } from "@/features/address/provincesSlice";
 import { Link } from "react-router";
 
@@ -6,10 +7,10 @@ function AddressProvince2() {
 
   return (
     <>
-      <h1>Provinces</h1>
-      <Link to="/address/provinces">list 1</Link>
-      <br />
-      <Link to="/product">product</Link>
+      <h1>Province 2</h1>
+      <Link to="/province">
+        <Button outline>Province 1</Button>
+      </Link>
       <ul>
         {data?.map((p) => (
           <li key={p.province_id}>{p.name}</li>

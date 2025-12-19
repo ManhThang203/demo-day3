@@ -1,2 +1,2 @@
 export * from "./productServices";
-export * from "./currentUserServices";
+export * from "./currentServices";
