@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 function TextInput({
-  lable,
+  label,
   name,
   type = "text",
   register,
@@ -11,7 +11,8 @@ function TextInput({
 }) {
   return (
     <>
-      {lable && <lable>{lable}</lable>}
+      {label && <label>{label}</label>}
+
       <br />
       <input
         id={name}
@@ -26,7 +27,7 @@ function TextInput({
 
 TextInput.prototype = {
   required: PropTypes.func.isRequired,
-  lable: PropTypes.string,
+  label: PropTypes.string,
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
   placeholder: PropTypes.string,

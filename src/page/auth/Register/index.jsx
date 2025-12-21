@@ -5,10 +5,16 @@ import * as authServices from "@/services/product/currentServices";
 import { useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "@/utils/validators";
+import { useConfirmPassword } from "@/hooks";
+import { useDebounceCheckEmail } from "@/hooks/useDebounceCheckEmail";
+
 function Register() {
   const navigate = useNavigate();
   const {
     register,
+    trigger,
+    watch,
+    setError,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -29,12 +35,15 @@ function Register() {
       navigate("/login");
     }
   };
+  useDebounceCheckEmail({ setError, trigger, watch });
+  useConfirmPassword({ trigger, watch, setError });
+
   return (
     <div>
       <h1>Register</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextInput
-          lable="firstName"
+          label="firstName"
           name="firstName"
           type="text"
           register={register}
@@ -44,7 +53,7 @@ function Register() {
         />
         <br />
         <TextInput
-          lable="lastName"
+          label="lastName"
           name="lastName"
           type="text"
           register={register}
@@ -54,7 +63,7 @@ function Register() {
         />
         <br />
         <TextInput
-          lable="email"
+          label="email"
           name="email"
           type="text"
           register={register}
@@ -64,7 +73,7 @@ function Register() {
         />
         <br />
         <TextInput
-          lable="password"
+          label="password"
           name="password"
           type="password"
           register={register}
@@ -74,7 +83,7 @@ function Register() {
         />
         <br />
         <TextInput
-          lable="password_confirmation"
+          label="password_confirmation"
           name="password_confirmation"
           type="password"
           register={register}
