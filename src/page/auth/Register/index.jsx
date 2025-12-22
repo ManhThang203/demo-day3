@@ -80,6 +80,7 @@ function Register() {
           errors={errors.password}
           required="Vui lòng nhập trường này"
           placeholder="Enter password..."
+          showTogglePassword
         />
         <br />
         <TextInput
@@ -90,6 +91,7 @@ function Register() {
           errors={errors.password_confirmation}
           required="Vui lòng nhập trường này"
           placeholder="Enter password_confirmation..."
+          showTogglePassword
         />
         <br />
         <Button outline>Register</Button>

@@ -1,0 +1,13 @@
+.inner {
+  position: relative;
+}
+.eye {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}

@@ -3,6 +3,8 @@
 import { object, string, ref, addMethod } from "yup";
 
 export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+export const PASSWORD_REGEX =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 addMethod(string, "email", function (message) {
   return this.matches(EMAIL_REGEX, {
@@ -36,6 +38,7 @@ export const registerSchema = object({
     .required("Tên người dùng là bắt buộc")
     .min(2, "Ít nhất phải 2 ký tự"),
   email: string().email("Sai định dạng email"),
+  /** cách 1 để check xem gọi dự email sau 1 khoản thời gian sử dụng kĩ thuật debounce **/
   // .test(
   //   "email",
   //   "Email đã tồn tại, chọn email khác",
@@ -52,7 +55,12 @@ export const registerSchema = object({
   //     }
   //   }
   // ),
-  password: string().min(8, "Mật khẩu cần ít nhất 8 ký tự"),
+  password: string()
+    .required("Mật khẩu là bặt buộc")
+    .matches(
+      PASSWORD_REGEX,
+      "Mật khẩu phải có ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt"
+    ),
 
   /** Cách 1 **/
 
