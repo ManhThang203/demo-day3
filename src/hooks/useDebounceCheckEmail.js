@@ -2,13 +2,14 @@ import { EMAIL_REGEX } from "@/utils/validators";
 import { useEffect } from "react";
 import * as authServices from "@/services/product/currentServices";
 export const useDebounceCheckEmail = ({
-  setError,
-  trigger,
   watch,
+  trigger,
+  setError,
   delay = 600,
 }) => {
   const email = watch("email");
   useEffect(() => {
+    // Nếu input email ko có nội dung hoặc không đúng định dạng email thì return luôn
     if (!email && !EMAIL_REGEX.test(email)) return;
 
     if (email && EMAIL_REGEX.test(email)) {
@@ -25,5 +26,5 @@ export const useDebounceCheckEmail = ({
       return () => clearTimeout(timer);
     }
     if (email) trigger("email");
-  }, [setError, trigger, delay, watch, email]);
+  }, [delay, email, setError, trigger]);
 };

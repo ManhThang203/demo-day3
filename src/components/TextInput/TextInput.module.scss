@@ -1,13 +1,32 @@
+.wrapper {
+  width: 100%;
+}
+
 .inner {
   position: relative;
+  width: 100%;
 }
+
+.inner input {
+  width: 100%;
+  padding-right: 40px; // chừa chỗ cho icon
+  box-sizing: border-box;
+}
+
 .eye {
   position: absolute;
+  right: 12px; // ✅ bám mép phải input
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 50%;
-  left: 25%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
+
+  color: #666;
+}
+
+.eye:hover {
+  color: #000;
 }

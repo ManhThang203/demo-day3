@@ -3,19 +3,18 @@ import TextInput from "@/components/TextInput";
 import { useForm } from "react-hook-form";
 import * as authServices from "@/services/product/currentServices";
 import { useNavigate } from "react-router";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "@/utils/validators";
-import { useConfirmPassword } from "@/hooks";
-import { useDebounceCheckEmail } from "@/hooks/useDebounceCheckEmail";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useConfirmPassword, useDebounceCheckEmail } from "@/hooks";
 
 function Register() {
   const navigate = useNavigate();
   const {
     register,
-    trigger,
-    watch,
-    setError,
     handleSubmit,
+    watch,
+    trigger,
+    setError,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -27,17 +26,18 @@ function Register() {
     },
     resolver: yupResolver(registerSchema),
   });
+
   const onSubmit = async (data) => {
     const { access_token } = await authServices.register(data);
-
+    console.log(access_token);
     if (access_token) {
       localStorage.setItem("accessToken", access_token);
       navigate("/login");
     }
   };
-  useDebounceCheckEmail({ setError, trigger, watch });
-  useConfirmPassword({ trigger, watch, setError });
 
+  useConfirmPassword({ watch, trigger, setError });
+  useDebounceCheckEmail({ watch, trigger, setError });
   return (
     <div>
       <h1>Register</h1>
