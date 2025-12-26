@@ -14,6 +14,7 @@ const Product = lazy(() => import("@/page/Product"));
 const Register = lazy(() => import("@/page/auth/Register"));
 const Login = lazy(() => import("@/page/auth/Login"));
 const Profile = lazy(() => import("@/page/Profile"));
+const PortalDemo = lazy(() => import("@/page/PortalDemo"));
 
 // Components
 import Header from "@/components/Header";
@@ -38,6 +39,7 @@ function AppRouter() {
         <Route path="province2" element={<AddressProvince2 />}></Route>
         <Route path="register" element={<Register />}></Route>
         <Route path="login" element={<Login />}></Route>
+        <Route path="portal-demo" element={<PortalDemo />}></Route>
 
         {/* Private Router */}
         <Route element={<PrivateRoute />}>
