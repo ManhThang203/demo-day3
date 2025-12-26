@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const baseURL = import.meta.env.VITE_BASE_API;
+
 export const httpClient = axios.create({
-  baseURL: import.meta.env.VITE_BASE_API,
+  baseURL,
 });
 
 httpClient.interceptors.request.use((config) => {
@@ -45,7 +47,7 @@ const processQueue = (error) => {
 const refreshToken = async () => {
   try {
     // Gọi API làm mới token bằng refreshToken hiện có
-    const result = await post("/auth/refresh-token", {
+    const result = await axios.post(`${baseURL}/auth/refresh-token`, {
       refresh_token: localStorage.getItem("refreshToken"),
     });
     if (result.status === "success") {
@@ -108,17 +110,21 @@ httpClient.interceptors.response.use(
 
       try {
         // Lấy token mới
+        console.log("getNewToken");
         await getNewToken();
 
         // Thử lại request ban đầu với token mới
         // httpClient sẽ tự động gắn token mới vào (nhờ interceptor request)
+        console.log("success");
         return httpClient(originalRequest);
       } catch (error) {
         // Nếu làm mới token thất bại, trả về lỗi
         // (Thường thì sẽ redirect về trang login)
+        console.log("error");
         return Promise.reject(error);
       }
     }
+    console.log("done");
 
     // Nếu không phải lỗi 401 hoặc đã thử lại rồi, trả về lỗi bình thường
     return Promise.reject(error);

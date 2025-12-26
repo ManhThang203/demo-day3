@@ -14,10 +14,14 @@ export const authSlide = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(getCurrentUser.pending, (state) => {
+      state.currentUser = true;
+    });
     builder.addCase(getCurrentUser.fulfilled, (state, actions) => {
       state.currentUser = actions.payload;
     });
     builder.addCase(getCurrentUser.rejected, (state) => {
+      console.log("rejected");
       state.currentUser = null;
     });
   },

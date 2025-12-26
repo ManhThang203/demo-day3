@@ -1,21 +1,26 @@
+// Đây là import động
 import { BrowserRouter, Route, Routes } from "react-router";
-import Loading from "@/components/Loading";
-import Counter from "@/page/Counter";
 
-import AssetsImg from "@/page/AssetsImg";
-import AssetsIcon from "@/page/AssetsIcon";
-import AddressProvince from "@/page/Address/AddressProvince";
-import AddressProvince2 from "@/page/Address/AddressProvince2";
-import Product from "@/page/Product";
-import AuthProvider from "@/components/AuthProvider";
+import { lazy, useEffect } from "react";
+// Đây là import bất đồng bộ
+const Counter = lazy(() => import("@/page/Counter"));
+
+// Page
+const AssetsImg = lazy(() => import("@/page/AssetsImg"));
+const AssetsIcon = lazy(() => import("@/page/AssetsIcon"));
+const AddressProvince = lazy(() => import("@/page/Address/AddressProvince"));
+const AddressProvince2 = lazy(() => import("@/page/Address/AddressProvince2"));
+const Product = lazy(() => import("@/page/Product"));
+const Register = lazy(() => import("@/page/auth/Register"));
+const Login = lazy(() => import("@/page/auth/Login"));
+const Profile = lazy(() => import("@/page/Profile"));
+
+// Components
 import Header from "@/components/Header";
-import Register from "@/page/auth/Register";
-import Login from "@/page/auth/Login";
+import AuthProvider from "@/components/AuthProvider";
 import PrivateRoute from "@/components/PrivateRoute";
-import Profile from "@/page/Profile";
-import { useEffect } from "react";
+import Loading from "@/components/Loading";
 import { httpClient } from "@/utils/http";
-
 function AppRouter() {
   useEffect(() => {
     httpClient.get("/auth/devices");
@@ -26,7 +31,6 @@ function AppRouter() {
       <AuthProvider />
       <Header />
       <Routes>
-        <Route path="counter" element={<Counter />}></Route>
         <Route path="assetsImg" element={<AssetsImg />}></Route>
         <Route path="assetsIcon" element={<AssetsIcon />}></Route>
         <Route path="product" element={<Product />}></Route>
@@ -37,6 +41,7 @@ function AppRouter() {
 
         {/* Private Router */}
         <Route element={<PrivateRoute />}>
+          <Route path="counter" element={<Counter />}></Route>
           <Route path="profile" element={<Profile />}></Route>
         </Route>
       </Routes>
