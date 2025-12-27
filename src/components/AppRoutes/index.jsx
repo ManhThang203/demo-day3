@@ -15,7 +15,7 @@ const Register = lazy(() => import("@/page/auth/Register"));
 const Login = lazy(() => import("@/page/auth/Login"));
 const Profile = lazy(() => import("@/page/Profile"));
 const PortalDemo = lazy(() => import("@/page/PortalDemo"));
-const Reducer = lazy(() => import("@/page/Reducer"));
+const UseReducer = lazy(() => import("@/page/UseReducer"));
 
 // Components
 import Header from "@/components/Header";
@@ -41,7 +41,7 @@ function AppRouter() {
         <Route path="register" element={<Register />}></Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="portal-demo" element={<PortalDemo />}></Route>
-        <Route path="reducer" element={<Reducer />}></Route>
+        <Route path="useReducer" element={<UseReducer />}></Route>
 
         {/* Private Router */}
         <Route element={<PrivateRoute />}>
