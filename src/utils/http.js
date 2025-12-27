@@ -52,8 +52,8 @@ const refreshToken = async () => {
     });
     if (result.status === "success") {
       // Lưu cặp token mới vào localStorage
-      localStorage.setItem("accessToken", result.data.access_token);
-      localStorage.setItem("refreshToken", result.data.refresh_token);
+      localStorage.setItem("accessToken", result.data.data.access_token);
+      localStorage.setItem("refreshToken", result.data.data.refresh_token);
     }
 
     // Thông báo thành công cho tất cả request đang chờ

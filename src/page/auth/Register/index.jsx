@@ -36,8 +36,9 @@ function Register() {
     }
   };
 
-  useConfirmPassword({ watch, trigger, setError });
   useDebounceCheckEmail({ watch, trigger, setError });
+  useConfirmPassword({ watch, trigger, setError });
+
   return (
     <div>
       <h1>Register</h1>
