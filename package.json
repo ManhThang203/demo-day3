@@ -28,6 +28,7 @@
     "react-router-dom": "^7.9.4",
     "react-waypoint": "^10.3.0",
     "redux-persist": "^6.0.0",
+    "redux-persist-transform-encrypt": "^5.1.1",
     "reudx": "^1.0.7",
     "sass-embedded": "^1.93.3",
     "yup": "^1.7.1"
