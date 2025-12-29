@@ -12,17 +12,32 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { encryptTransform } from "redux-persist-transform-encrypt";
+
+// Mã hóa base64
+const secretKey = btoa("my-super-secret-key");
+
+const transforms = import.meta.env.DEV
+  ? []
+  : [
+      encryptTransform({
+        secretKey: [atob(secretKey)],
+        onError: function () {},
+      }),
+    ];
 
 const persistConfig = {
   key: "root",
   storage,
   blacklist: [productSlide.reducerPath],
+  transforms,
 };
 
 const authPersistConfig = {
   key: authSlide.reducerPath,
   storage: storage,
   blacklist: ["fetching"],
+  transforms,
 };
 
 const rootReducer = combineReducers({
