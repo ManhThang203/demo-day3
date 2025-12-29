@@ -1,20 +1,9 @@
 import { useReducer } from "react";
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "Increment":
-      return state + 1;
-    case "decrement":
-      return state - 1;
-    case "incrementByAmout":
-      return state + action.payload;
-    default:
-      throw new Error(`Action type "${action.type}" invalid`);
-  }
-}
+import reducer, { initState } from "./reducer";
 
 function UseReducer() {
-  const [count, dispatch] = useReducer(reducer, 0);
+  const [state, dispatch] = useReducer(reducer, initState);
 
   return (
     <div>
@@ -29,7 +18,7 @@ function UseReducer() {
         >
           Increment
         </button>
-        <span>{count}</span>
+        <span>{state.count}</span>
         <button
           aria-label="Decrement value"
           onClick={() =>

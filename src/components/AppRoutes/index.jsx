@@ -21,7 +21,7 @@ const UseReducer = lazy(() => import("@/page/UseReducer"));
 import Header from "@/components/Header";
 import AuthProvider from "@/components/AuthProvider";
 import PrivateRoute from "@/components/PrivateRoute";
-import Loading from "@/components/Loading";
+// import Loading from "@/components/Loading";
 import { httpClient } from "@/utils/http";
 function AppRouter() {
   useEffect(() => {
@@ -29,7 +29,7 @@ function AppRouter() {
   }, []);
   return (
     <BrowserRouter>
-      <Loading />
+      {/* <Loading /> */}
       <AuthProvider />
       <Header />
       <Routes>

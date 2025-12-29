@@ -19,7 +19,7 @@ export const productSlide = createSlice({
       state.loading = true;
     });
     builder.addCase(getList.fulfilled, (state, action) => {
-      state.list = action.payload.items;
+      state.list = [...state.list, ...action.payload.items];
       state.loading = false;
     });
     builder.addCase(getList.rejected, (state) => {

@@ -16,13 +16,20 @@ import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: [productSlide.reducerPath],
+};
+
+const authPersistConfig = {
+  key: authSlide.reducerPath,
+  storage: storage,
+  blacklist: ["fetching"],
 };
 
 const rootReducer = combineReducers({
+  [authSlide.reducerPath]: persistReducer(authPersistConfig, authSlide.reducer),
   [counterSlide.reducerPath]: counterSlide.reducer,
   [productSlide.reducerPath]: productSlide.reducer,
   [addressApi.reducerPath]: addressApi.reducer,
-  [authSlide.reducerPath]: authSlide.reducer,
 });
 
 const store = configureStore({

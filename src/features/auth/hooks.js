@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/services/product";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAuthSlide } from "./select";
+import { selectAuthFetching, selectAuthSlide } from "./select";
 
 export const useFetchCurrentUser = () => {
   const dispatch = useDispatch();
@@ -14,4 +14,9 @@ export const useFetchCurrentUser = () => {
 export const useCurrentUser = () => {
   const user = useSelector(selectAuthSlide);
   return user;
+};
+
+export const useFetching = () => {
+  const fetching = useSelector(selectAuthFetching);
+  return fetching;
 };

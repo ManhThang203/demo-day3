@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getList as getProductList } from "@/services/product";
 import { selectLoading, selectProduct } from "./select";
 
-export const useFetchProductList = () => {
+export const useFetchProductList = ({ limit, page } = {}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProductList());
-  }, [dispatch]);
+    dispatch(getProductList({ limit, page }));
+  }, [dispatch, limit, page]);
 };
 
 export const useProudtList = () => {
