@@ -1,20 +1,34 @@
 import Button from "@/components/Button";
-import Loading from "@/components/Loading";
+
 import {
   useFetchProductList,
   useLoading,
+  usePagination,
   useProudtList,
 } from "@/features/product";
-import { useState } from "react";
+import { useInfinifyLoad } from "@/hooks";
+
+import { useCallback, useState } from "react";
 import { Link } from "react-router";
-import { Waypoint } from "react-waypoint";
 
 function Product() {
   const [page, setPage] = useState(1);
+  const { last_page } = usePagination();
 
   useFetchProductList({ page });
   const product = useProudtList();
   const isloading = useLoading();
+
+  // ghi nhớ hàm handleLoadMore tranh bị re-render lại
+  const handleLoadMore = useCallback(() => {
+    if (isloading || page >= last_page) return;
+    setPage(page + 1);
+  }, [isloading, last_page, page]);
+
+  useInfinifyLoad({
+    bottomOffset: -200,
+    onEnd: handleLoadMore,
+  });
   return (
     <div>
       <h1>Product List</h1>
@@ -26,7 +40,7 @@ function Product() {
           {product.map((p) => (
             <li key={p.id}>{p.title}</li>
           ))}
-          <Waypoint bottomOffset={-100} onEnter={() => setPage(page + 1)} />
+          {/* <Waypoint bottomOffset={-100} onEnter={handleLoadMore} /> */}
         </ul>
       </div>
       {isloading && <div>Loading...</div>}
