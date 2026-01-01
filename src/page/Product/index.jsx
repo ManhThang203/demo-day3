@@ -1,35 +1,47 @@
-import Button from "@/components/Button";
-import { Link } from "react-router";
-import useInfiniteScroll from "react-infinite-scroll-hook";
-import Loading from "@/components/Loading";
-import { useLoadItems } from "@/hooks";
+import {
+  useFetchProductList,
+  useLoading,
+  usePagination,
+  useProudtList,
+} from "@/features/product";
+import { useCallback, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function Product() {
-  const { loading, products, hasNextPage, error, loadMore } = useLoadItems();
+  const [page, setPage] = useState(1);
 
-  const [infiniteRef] = useInfiniteScroll({
-    loading,
-    hasNextPage,
-    onLoadMore: loadMore,
-    disabled: Boolean(error) || !hasNextPage,
-    rootMargin: "0px 0px 200px 0px",
-  });
+  const { last_page } = usePagination();
+  const products = useProudtList();
+  const loading = useLoading();
+
+  // gọi API mỗi khi page thay đổi
+  useFetchProductList({ page });
+
+  // còn page tiếp theo không?
+  // Nếu last_page có giá trị (không phải null hoặc undefined), dùng giá trị đó
+  // Nếu last_page là null hoặc undefined, dùng Infinity (vô cực)
+  const hasNextPage = page <= (last_page ?? Infinity);
+
+  // hàm load thêm data
+  const loadMore = useCallback(() => {
+    if (loading || !hasNextPage) return;
+    setPage((prev) => prev + 1);
+  }, [loading, hasNextPage]);
 
   return (
     <div>
-      <h1>Product List</h1>
-
-      <Link to="/province">
-        <Button outline>province</Button>
-      </Link>
-
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>{product.title}</li>
-        ))}
-      </ul>
-
-      {hasNextPage && <Loading ref={infiniteRef} loading={loading} />}
+      <InfiniteScroll
+        dataLength={products.length}
+        next={loadMore}
+        hasMore={hasNextPage}
+        loader={<h4>Loading...</h4>}
+      >
+        <ul>
+          {products.map((product) => (
+            <li key={product.id}>{product.title}</li>
+          ))}
+        </ul>
+      </InfiniteScroll>
     </div>
   );
 }

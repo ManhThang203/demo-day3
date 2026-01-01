@@ -12,7 +12,6 @@ export function useLoadItems() {
   const { last_page } = usePagination();
   const products = useProudtList();
   const loading = useLoading();
-  console.log(loading);
 
   // gọi API mỗi khi page thay đổi
   useFetchProductList({ page });
