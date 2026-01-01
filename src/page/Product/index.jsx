@@ -6,6 +6,7 @@ import {
   useProudtList,
 } from "@/features/product";
 import { useCallback, useState } from "react";
+import { Helmet } from "react-helmet";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 function Product() {
@@ -36,6 +37,11 @@ function Product() {
 
   return (
     <div>
+      <Helmet>
+        <title>Product List</title>
+        <meta name="description" content="Description of products list" />
+      </Helmet>
+
       <InfiniteScroll
         dataLength={products.length}
         next={loadMore}
@@ -44,8 +50,8 @@ function Product() {
         refreshFunction={refresh}
         pullDownToRefresh
         pullDownToRefreshThreshold={50}
-        pullDownToRefreshContent={<Loading type="refresh" />}
-        releaseToRefreshContent={<Loading type="refresh" />}
+        pullDownToRefreshContent={<Loading type="refresh" delay={100} />}
+        releaseToRefreshContent={<Loading type="refresh" delay={100} />}
       >
         <ul>
           {products.map((product) => (
