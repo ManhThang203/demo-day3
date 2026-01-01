@@ -1,14 +1,7 @@
 // import { useLoading } from "@/features/product";
 
-import { useLoading } from "@/features/product";
-import styles from "./Loading.module.scss";
-function Loading() {
-  const iseLoading = useLoading();
-  if (!iseLoading) return null;
-  return (
-    <>
-      <div className={styles.wrapper} />
-    </>
-  );
-}
+import { forwardRef } from "react";
+const Loading = forwardRef((props, ref) => {
+  return <div ref={ref}>{props.loading && <span>Loading...</span>}</div>;
+});
 export default Loading;

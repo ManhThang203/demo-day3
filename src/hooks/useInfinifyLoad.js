@@ -5,7 +5,6 @@ export const useInfinifyLoad = ({
   onEnd = () => {},
 } = {}) => {
   const isEnded = useRef(false);
-  console.log(isEnded);
   useEffect(() => {
     const handle = () => {
       // Tổng Chiều cao của Network tab - (chiều cao của window  + chiều cao khi cuộn + chiều cao khi gần chạm đáy)
