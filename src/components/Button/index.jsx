@@ -46,7 +46,7 @@ function Button({
   );
 }
 
-Button.prototype = {
+Button.propTypes = {
   children: PropTypes.node,
   primary: PropTypes.bool,
   outline: PropTypes.bool,

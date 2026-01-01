@@ -1,3 +1,4 @@
+import Loading from "@/components/Loading";
 import {
   useFetchProductList,
   useLoading,
@@ -11,6 +12,7 @@ function Product() {
   const [page, setPage] = useState(1);
 
   const { last_page } = usePagination();
+  console.log(last_page);
   const products = useProudtList();
   const loading = useLoading();
 
@@ -28,13 +30,22 @@ function Product() {
     setPage((prev) => prev + 1);
   }, [loading, hasNextPage]);
 
+  const refresh = useCallback(() => {
+    setPage(1);
+  }, []);
+
   return (
     <div>
       <InfiniteScroll
         dataLength={products.length}
         next={loadMore}
         hasMore={hasNextPage}
-        loader={<h4>Loading...</h4>}
+        loader={<Loading type="load-more" />}
+        refreshFunction={refresh}
+        pullDownToRefresh
+        pullDownToRefreshThreshold={50}
+        pullDownToRefreshContent={<Loading type="refresh" />}
+        releaseToRefreshContent={<Loading type="refresh" />}
       >
         <ul>
           {products.map((product) => (
