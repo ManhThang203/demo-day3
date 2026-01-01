@@ -41,7 +41,6 @@ function Product() {
         <title>Product List</title>
         <meta name="description" content="Description of products list" />
       </Helmet>
-
       <InfiniteScroll
         dataLength={products.length}
         next={loadMore}

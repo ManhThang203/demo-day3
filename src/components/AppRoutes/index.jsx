@@ -16,6 +16,7 @@ const Login = lazy(() => import("@/page/auth/Login"));
 const Profile = lazy(() => import("@/page/Profile"));
 const PortalDemo = lazy(() => import("@/page/PortalDemo"));
 const UseReducer = lazy(() => import("@/page/UseReducer"));
+const PostDetail = lazy(() => import("@/page/PostDetail"));
 
 // Components
 import Header from "@/components/Header";
@@ -42,6 +43,7 @@ function AppRouter() {
         <Route path="login" element={<Login />}></Route>
         <Route path="portal-demo" element={<PortalDemo />}></Route>
         <Route path="useReducer" element={<UseReducer />}></Route>
+        <Route path="post-detail" element={<PostDetail />}></Route>
 
         {/* Private Router */}
         <Route element={<PrivateRoute />}>

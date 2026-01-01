@@ -3,6 +3,8 @@ import Button from "@/components/Button";
 import * as authServices from "@/services/product/currentServices";
 import { Link, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "motion/react";
 function Header() {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ function Header() {
   };
   return (
     <>
-      <h1>Header</h1>
+      <motion.h1 animate={{ x: 100 }}>Header</motion.h1>
       {currentUser ? (
         <>
           <p>{currentUser?.email}</p>
