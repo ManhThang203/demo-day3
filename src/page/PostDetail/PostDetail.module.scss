@@ -30,3 +30,21 @@
     padding-left: 40px;
   }
 }
+
+a {
+  position: relative;
+}
+
+a::before {
+  content: "#";
+  width: 10px;
+  height: 10px;
+  color: #333;
+  margin-left: 8px;
+  opacity: 0; /* Ẩn mặc định */
+  transition: opacity 0.2s ease;
+}
+
+a:hover::before {
+  opacity: 1; /* Hover mới hiện */
+}
