@@ -1,5 +1,5 @@
-const fakeData = `<h2>Bốn nguyên lý là gì?</h2>
-<img src="" onerror="alert('XSS')"/>
+const fakeData = `
+      <h2>Bốn nguyên lý là gì?</h2>
         <p>OOP có 4 nguyên lý cốt lõi giống như 4 bánh xe của một chiếc ô tô - thiếu cái nào cũng khó chạy được. Đó là:</p>
         <ol>
             <li>Encapsulation (đóng gói)</li>
