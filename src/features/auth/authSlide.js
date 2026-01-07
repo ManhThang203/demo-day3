@@ -23,7 +23,6 @@ export const authSlide = createSlice({
       state.fetching = false;
     });
     builder.addCase(getCurrentUser.rejected, (state) => {
-      console.log("rejected");
       state.currentUser = null;
       state.fetching = false;
     });
