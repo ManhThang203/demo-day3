@@ -23,6 +23,7 @@ function Login() {
     },
   });
 
+  // xử lý khi  vào các trang login mà đã đăng nhập rồi thì chuyển hướng về trang chủ hoặc trang tiếp tục
   useEffect(() => {
     if (currentUser) {
       const continuePath = params.get("continue") || "/";
